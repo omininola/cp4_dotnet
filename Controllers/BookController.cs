@@ -33,15 +33,15 @@ public class BookController : Controller
     }
 
     [HttpPut("{id:length(24)}")]
-    public async Task<IActionResult> Update(string id, Book book)
+    public async Task<ActionResult<Book>> Update(string id, Book book)
     {
         var existingBook = await _service.GetBook(id);
         if (existingBook is null) return  NotFound();
-        
+
         book.Id = existingBook.Id;
         var updatedBook = await _service.UpdateBook(id, book);
         
-        return updatedBook is null ? NoContent() : NotFound();
+        return updatedBook is null ? NotFound() : updatedBook;
     }
 
     [HttpDelete("{id:length(24)}")]
