@@ -15,6 +15,6 @@ public class Book
     [BsonElement("published_year")]
     public required int PublishedYear { get; set; }
     
-    [BsonElement("author")]
-    public required Author Author { get; set; }
+    [BsonElement("authors")]
+    public required List<Author> Authors { get; set; }
 }
